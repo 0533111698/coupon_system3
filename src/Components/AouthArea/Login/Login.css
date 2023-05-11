@@ -1,0 +1,35 @@
+.Login {
+    
+    background-image: url("wellcomeImage3.jpg"); /* The image used */
+    background-color: #c7a7a7; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+.Login>div{
+    margin: 25px;
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    border: solid black 2px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:5px 5px 5px;
+    text-align: center;
+
+    transition: all 0.5s;
+}
+.Login>img{
+
+}
+.Login>h1 {
+    display: table-cell;
+    height: 230px;
+    width: 230px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: hsl(189, 100%, 50%);
+}

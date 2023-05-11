@@ -1,0 +1,16 @@
+.Layout {
+	display: grid;
+    height: 100%;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 10% 10% 80% 10%;
+
+}
+.Layout>header, .Layout>footer, .Layout>aside,.Layout>main{
+    grid-column: 2 span;
+
+}
+.Layout>*{
+    border: solid rgb(206, 62, 5) 4px;
+}.Layout>main{
+    overflow: auto;
+}
