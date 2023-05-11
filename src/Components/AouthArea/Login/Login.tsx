@@ -17,7 +17,7 @@ function Login(): JSX.Element {
     function send(credentials: Credentials) {
         LoginService.login(credentials).then(()=>{
             notificationsService.succes("Wellcome!!!")
-            navigate("/customers");
+
         }).catch((error)=> {
             notificationsService.error("hoops");
         });

@@ -32,7 +32,7 @@ function AouthMenu(): JSX.Element {
                     <NavLink to={"/login"}>Login</NavLink>
                 </> ||
                 <>
-                    Hello {authStore.getState().user.name} <button onClick={logout}>Logout</button>
+                    Hello {authStore.getState().name} <button onClick={logout}>Logout</button>
                 </>
         </div>
     );

@@ -6,7 +6,6 @@ import Customers from "../../AdminArea/Customers/Customers/Customers";
 import Login from "../../AouthArea/Login/Login";
 import AddCompany from "../../AdminArea/Compnies/AddCompany/AddCompany";
 import PageNotFound from "../../PagesArea/PageNotFound/PageNotFound";
-import Register from "../../AouthArea/Register/Register";
 import Companies from "../../AdminArea/Compnies/Companies/Companies";
 import CompanyDetails from "../../AdminArea/Compnies/CompanyDetails/CompanyDetails";
 
@@ -21,7 +20,6 @@ function Routing(): JSX.Element {
                 <Route path="/customers" element={<Customers/>}/>
                 <Route path="/companies" element={<Companies/>}/>
                 <Route path="/Company/add"element={<AddCompany/>}/>
-                <Route path="/register"element={<Register/>}/>
                 <Route path="*" element={<PageNotFound/>}></Route>
             
                 </Routes>	

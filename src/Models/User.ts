@@ -1,13 +1,13 @@
 class User {
     name:string
-    email:string;
-    password:string;
+    clientType:string
     
     
-    constructor(name:string,email:string, password:string){
+    
+    constructor(name:string,clientType:string){
     this.name=name;
-    this.email=email;
-    this.password=password;
+    this.clientType=clientType;
+
 
     }
     }
