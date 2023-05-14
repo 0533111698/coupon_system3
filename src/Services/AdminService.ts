@@ -2,7 +2,7 @@ import axios from "axios";
 import Customer from "../Models/Customer";
 import Company from "../Models/Company";
 import { addCus, deleteCustomer, featchCustomers, customersStore, updateCustomer } from "../store/CustomersStore";
-import {companiessStore,addComp, fetchCompanies } from "../store/CompaniesState";
+import {companiessStore,addComp, fetchCompanies, deleteCompany } from "../store/CompaniesState";
 
 class AdminService {
 	public async getAllCustomers(){
@@ -19,6 +19,12 @@ class AdminService {
         return response;
 
     }
+    public async addCustomer(customer:Customer){
+        const response=((await axios.post<Customer>('http://localhost:8080/admin/addCustomer',customer)).data);
+        customersStore.dispatch(addCus(response));
+        return response;
+    }
+
     public async getAllCompanies(){
         if(companiessStore.getState().companies.length==0){
         const response=await axios.get<Company[]>('http://localhost:8080/admin/getAllCompanies');
@@ -41,6 +47,13 @@ class AdminService {
         }
         else
                 return  comp;
+    }
+    public async deleteCompany(companyId:number){
+        console.log("hi");
+        const response=(await axios.delete("http://localhost:8080/admin/deleteCompany/"+companyId)).data;
+        console.log("bye");
+        companiessStore.dispatch((deleteCompany(companyId)));
+        return response;
     }
 }
 const adminService=new AdminService();

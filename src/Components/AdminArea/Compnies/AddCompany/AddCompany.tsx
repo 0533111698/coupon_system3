@@ -16,7 +16,7 @@ function AddCompany(): JSX.Element {
         navigate("/company/"+newcomp.id);
        } )
        .catch(err=>{
-        notificationsService.error(err);
+        notificationsService.error(err.message);
        })
     }
     return (

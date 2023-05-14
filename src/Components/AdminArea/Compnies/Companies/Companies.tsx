@@ -13,7 +13,7 @@ function Companies(): JSX.Element {
         .then(( Companies)=>{
             setCompanies(Companies)
         })
-        .catch(error=>notificationsService.error("comanies go to sleep... sorry"))
+        .catch(error=>notificationsService.error("You are not loged in"))
     },[]);
     return (
         <div className="Companies">
