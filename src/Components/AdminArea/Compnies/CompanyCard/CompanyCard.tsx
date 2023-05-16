@@ -13,19 +13,20 @@ interface CompanyProps{
 function CompanyCard(props:CompanyProps): JSX.Element {   
     const navigate = useNavigate();
     const [companies, setCompanies]=useState<Company[]>();
-    const id: number = +useParams().companyId;
+    const id: number = +useParams().compId;
     
    
     function deleteMe(){
-    
         adminService.deleteCompany(props.company.id)
-        
         .then(()=>{
             notificationsService.succes("deleted succes");
+            window.location.reload();
             navigate("/companies");
-           
         })
         .catch(err=>notificationsService.error(err.message));
+    }
+    function updateMe(){
+        navigate("/companies/edit/" + props.company.id);
     }
     return (
         <div className="CompanyCard">
@@ -33,6 +34,8 @@ function CompanyCard(props:CompanyProps): JSX.Element {
             <h4>{props.company.name}</h4></NavLink>	
             <p>{props.company.email}</p>
             <button onClick={deleteMe}>🗑</button>
+            <button onClick={updateMe}>✏</button>
+            
         </div>
     );
 }

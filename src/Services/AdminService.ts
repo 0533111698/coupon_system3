@@ -2,7 +2,7 @@ import axios from "axios";
 import Customer from "../Models/Customer";
 import Company from "../Models/Company";
 import { addCus, deleteCustomer, featchCustomers, customersStore, updateCustomer } from "../store/CustomersStore";
-import {companiessStore,addComp, fetchCompanies, deleteCompany } from "../store/CompaniesState";
+import {companiessStore,addComp, fetchCompanies, deleteCompany, updateCompany } from "../store/CompaniesState";
 
 class AdminService {
 	public async getAllCustomers(){
@@ -35,8 +35,9 @@ class AdminService {
     }
     public async getOneCustomer(customerId:number):Promise <Customer>{
         const cust=customersStore.getState().customers.find(c=>c.id==customerId);
-        if(cust==undefined)
+        if(cust==undefined){
                 throw Error("customer not found!");
+    }
         else
                 return cust;        
     }
@@ -49,10 +50,18 @@ class AdminService {
                 return  comp;
     }
     public async deleteCompany(companyId:number){
-        console.log("hi");
         const response=(await axios.delete("http://localhost:8080/admin/deleteCompany/"+companyId)).data;
-        console.log("bye");
         companiessStore.dispatch((deleteCompany(companyId)));
+        return response;
+    }
+    public async updateCompany(company:Company){
+        const response = (await axios.put<Company>("http://localhost:8080/admin/updateCompany/", company)).data; // form data will be sent to the server as request body
+        companiessStore.dispatch(updateCompany(company));
+        return response;
+    }
+    public async updateCustomer(customer:Customer){
+        const response = (await axios.put<Customer>("http://localhost:8080/admin/updateCustomer/", customer)).data; // form data will be sent to the server as request body
+        customersStore.dispatch(updateCustomer(customer));
         return response;
     }
 }
