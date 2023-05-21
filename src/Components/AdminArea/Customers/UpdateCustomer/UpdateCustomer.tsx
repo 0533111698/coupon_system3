@@ -28,7 +28,7 @@ function UpdateCustomer(): JSX.Element {
        customer.id= id;
        adminService.updateCustomer(customer)
        .then(()=>{
-        notificationsService.succes("customer update!")
+        notificationsService.success("customer update!")
         navigate("/customers/"+id)
        })
        .catch(error=>notificationsService.error(error));
@@ -47,11 +47,11 @@ function UpdateCustomer(): JSX.Element {
                     required:{value:true,message:"Required field"},minLength:{value:2,message:""}
                 })} /><br/>
                 <span>{formState.errors?.lastName?.message}</span><br />
-                <input type="text" placeholder="Enter email here"{...register("email",{
+                <input type="email" placeholder="Enter email here"{...register("email",{
                     required:{value:true,message:"Required field"}
                 })} /> <br />
                 <span>{formState.errors?.email?.message}</span><br />
-                <input type="text" placeholder="Enter password here"{...register("password",{
+                <input type="password" placeholder="Enter password here"{...register("password",{
                     required:{value:true,message:"Required field"}
                 })} /><br/>
                 <span>{formState.errors?.password?.message}</span><br />

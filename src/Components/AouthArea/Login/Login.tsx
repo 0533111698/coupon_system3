@@ -16,10 +16,10 @@ function Login(): JSX.Element {
 
     function send(credentials: Credentials) {
         LoginService.login(credentials).then(()=>{
-            notificationsService.succes("Wellcome!!!")
+            notificationsService.success("Wellcome!!!")
 
         }).catch((error)=> {
-            notificationsService.error("hoops");
+            notificationsService.error(error);
         });
     }
     return (
@@ -36,7 +36,7 @@ function Login(): JSX.Element {
                 <br />
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" placeholder="B1234@"  {...register("password")} />
-                <select id="clientType"  {...register("clientType", {
+                <select id="clientType" defaultValue={"Administrator"} {...register("clientType", {
                     required: { value: true, message: "clientType is required" }
                 })}>
                     <option value="Administrator">Administrator</option>

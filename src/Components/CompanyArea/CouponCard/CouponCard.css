@@ -1,4 +1,4 @@
-.AddCustomer {
+.CouponCard {
     width: 250px;
     height: 350px;
     display: inline-block;
@@ -9,5 +9,5 @@
     box-shadow:5px 5px 5px;
     text-align: center;
 
-    transition: all 0.5s;	
+    transition: all 0.5s;
 }

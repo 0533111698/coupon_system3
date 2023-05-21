@@ -11,6 +11,9 @@ import CompanyDetails from "../../AdminArea/Compnies/CompanyDetails/CompanyDetai
 import AddCustomer from "../../AdminArea/Customers/AddCustomer/AddCustomer";
 import UpdateCompany from "../../AdminArea/Compnies/UpdateCompany/UpdateCompany";
 import UpdateCustomer from "../../AdminArea/Customers/UpdateCustomer/UpdateCustomer";
+import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
+import Coupons from "../../CompanyArea/Coupons/Coupons";
+import CouponDetails from "../../CompanyArea/CouponDetails/CouponDetails";
 
 
 function Routing(): JSX.Element {
@@ -22,10 +25,13 @@ function Routing(): JSX.Element {
                 <Route path="/companies/edit/:compId" element={<UpdateCompany />} />
                 <Route path="/customers/edit/:custId" element={<UpdateCustomer />} />                
                 <Route path="/company/:companyId" element={<CompanyDetails/>}/>
+                <Route path="/coupons/:couponId" element={<CouponDetails/>}/>
                 <Route path="/customers" element={<Customers/>}/>
                 <Route path="/companies" element={<Companies/>}/>
+                <Route path="/coupons" element={<Coupons/>}/>
                 <Route path="/Company/add"element={<AddCompany/>}/>
                 <Route path="/customer/add"element={<AddCustomer/>}/>
+                <Route path="/coupon/add"element={<AddCoupon/>}/>
                 <Route path="*" element={<PageNotFound/>}></Route>
             
                 </Routes>	

@@ -12,8 +12,8 @@ function AddCustomer(): JSX.Element {
     function sendCustomer(customer:Customer){
        adminService.addCustomer(customer)
        .then(newcust=>{
-        notificationsService.succes("customer added!");
-        navigate("/customer/"+newcust.id)
+        notificationsService.success("customer added!");
+        navigate("/customers/"+newcust.id)
        } )
        .catch(err=>{
         notificationsService.error(err);
@@ -32,11 +32,11 @@ function AddCustomer(): JSX.Element {
                     required:{value:true,message:"Required field"},minLength:{value:2,message:""}
                 })} /><br/>
                 <span>{formState.errors?.lastName?.message}</span><br />
-                <input type="text" placeholder="Enter email here"{...register("email",{
+                <input type="email" placeholder="Enter email here"{...register("email",{
                     required:{value:true,message:"Required field"}
                 })} /> <br />
                 <span>{formState.errors?.email?.message}</span><br />
-                <input type="text" placeholder="Enter password here"{...register("password",{
+                <input type="password" placeholder="Enter password here"{...register("password",{
                     required:{value:true,message:"Required field"}
                 })} /><br/>
                 <span>{formState.errors?.password?.message}</span><br />

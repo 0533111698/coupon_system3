@@ -8,6 +8,9 @@ function Menu(): JSX.Element {
             <NavLink to="/companies">Companies</NavLink><span>        </span>
             <NavLink to="/company/add">addCompany</NavLink><span>        </span>
             <NavLink to="/customer/add">addCustomer</NavLink><span>        </span>
+            <NavLink to="/coupon/add">addCoupon</NavLink><span>        </span>
+
+            <NavLink to="/coupons">Coupons</NavLink><span></span>   
         </div>
     );
 }

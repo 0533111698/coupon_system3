@@ -12,7 +12,7 @@ function AddCompany(): JSX.Element {
     function sendCompany(company:Company){
        adminService.addCompany(company)
        .then(newcomp=>{
-        notificationsService.succes("company added!");
+        notificationsService.success("company added!");
         navigate("/company/"+newcomp.id);
        } )
        .catch(err=>{
@@ -27,11 +27,11 @@ function AddCompany(): JSX.Element {
                     required:{value:true,message:"Required field"}
                 })} /><br/>
                 <span>{formState.errors?.name?.message}</span><br />
-                <input type="text" placeholder="Enter email here"{...register("email",{
+                <input type="email" placeholder="Enter email here"{...register("email",{
                     required:{value:true,message:"Required field"}
                 })} /> <br />
                 <span>{formState.errors?.email?.message}</span><br />
-                <input type="text" placeholder="Enter password here"{...register("password",{
+                <input type="password" placeholder="Enter password here"{...register("password",{
                     required:{value:true,message:"Required field"}
                 })} /><br/>
                 <span>{formState.errors?.password?.message}</span><br />

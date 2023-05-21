@@ -4,6 +4,7 @@ import Coupon from "../Models/Coupon";
 // 1. the state - array of Coupons
 export class AdminCouponsState{
     public coupons: Coupon[]=[];
+    
 }
 // 2. a list of Action Types
 export enum CouponsActionTypes{

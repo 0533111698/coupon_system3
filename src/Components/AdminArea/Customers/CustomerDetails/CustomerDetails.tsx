@@ -18,6 +18,16 @@ function CustomerDetails(): JSX.Element {
     .then(c=>setCustomer(c))
     .catch(error=>notificationsService.error(error))
     } ,[]);
+    function updateMe(){
+        navigate("/customers/edit/"+id);
+       }
+       function deleteMe(){
+           adminService.deleteCustomer(id)
+           .then(()=>{
+               notificationsService.success("customer deleted!");
+               window.location.reload();
+           }).catch(err=>notificationsService.error(err.message));
+       }
     
 
 
@@ -26,6 +36,9 @@ function CustomerDetails(): JSX.Element {
 			{!customer&&<p>"the customer lost..."</p>}
             {customer&&<><h1>{customer?.firstName}{customer?.lastName}</h1>
             <h2>{customer.email}</h2>
+            <button onClick={updateMe}>✏</button>
+            <button onClick={deleteMe}>🗑</button>
+
             </>}
         </div>
     );

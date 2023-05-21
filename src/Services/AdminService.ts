@@ -35,7 +35,7 @@ class AdminService {
     }
     public async getOneCustomer(customerId:number):Promise <Customer>{
         const cust=customersStore.getState().customers.find(c=>c.id==customerId);
-        if(cust==undefined){
+        if(cust===undefined){
                 throw Error("customer not found!");
     }
         else
@@ -43,7 +43,7 @@ class AdminService {
     }
     public async getOneCompany(companyId:number):Promise<Company>{
         const comp=companiessStore.getState().companies.find(c=>c.id==companyId);
-        if (comp==undefined){
+        if (comp===undefined){
             throw Error("Company not found!")
         }
         else
@@ -51,7 +51,12 @@ class AdminService {
     }
     public async deleteCompany(companyId:number){
         const response=(await axios.delete("http://localhost:8080/admin/deleteCompany/"+companyId)).data;
-        companiessStore.dispatch((deleteCompany(companyId)));
+        companiessStore.dispatch(deleteCompany(companyId));
+        return response;
+    }
+    public async deleteCustomer(customerId:number){
+        const response=(await axios.delete("http://localhost:8080/admin/deleteCustomer/"+customerId)).data
+        customersStore.dispatch(deleteCustomer(customerId));
         return response;
     }
     public async updateCompany(company:Company){
