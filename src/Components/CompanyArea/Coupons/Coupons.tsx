@@ -4,6 +4,7 @@ import "./Coupons.css";
 import companyService from "../../../Services/CompanyService";
 import notificationsService from "../../../Services/NotificationsService";
 import CouponCard from "../CouponCard/CouponCard";
+import { authStore } from "../../../store/AouthState";
 
 function Coupons(): JSX.Element {
     const[getCoupons,setCoupons]=useState<Coupon[]>([]);
@@ -13,10 +14,10 @@ function Coupons(): JSX.Element {
             setCoupons(coups)
         })
         .catch(error=>notificationsService.error(error))
-    })
+    },[])
     return (
         <div className="Coupons">
-			{!getCoupons&&getCoupons.map(c=><CouponCard key={c.id}coupon={c}/>)}
+			{getCoupons.map(c=><CouponCard key={c.id}coupon={c}/>)}
         </div>
     );
 }

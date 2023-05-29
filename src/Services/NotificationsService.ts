@@ -12,8 +12,8 @@ class NotificationsService{
             toast.error(err.response.data);
             wait(3000)
                 if (err.response.status === 401){
-                    localStorage.removeItem('token');
-                    window.location.href = '/login';
+                    // localStorage.removeItem('token');
+                
             }} else {                                          
             toast.error(err.message);
         }        

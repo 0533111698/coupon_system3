@@ -2,7 +2,7 @@
 	display: grid;
     height: 100%;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 10% 10% 80% 10%;
+    grid-template-rows: 20% 10% 75% 5%;
 
 }
 .Layout>header, .Layout>footer, .Layout>aside,.Layout>main{
@@ -10,7 +10,7 @@
 
 }
 .Layout>*{
-    border: solid rgb(206, 62, 5) 4px;
+    /* border: solid rgb(206, 62, 5) 4px; */
 }.Layout>main{
     overflow: auto;
 }

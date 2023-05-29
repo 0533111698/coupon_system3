@@ -7,12 +7,12 @@ export class AdminCustomersState{
 }
 // 2. a list of Action Types
 export enum CustomersActionTypes{
-    FeatchCustomers, AddCustomer, DeleteCustomer,UpdateCustomer
+    FeatchCustomers, AddCustomer, DeleteCustomer,UpdateCustomer,Logout
 }
 // 3. wrapper for Action and Value
 export interface CustomersAction{
     type:CustomersActionTypes,
-    payload:any
+    payload?:any
 }
 // 4. helper functions to create above interface instances
 export function featchCustomers(customers:Customer[]){
@@ -26,6 +26,9 @@ export function updateCustomer(customer:Customer){
 }
 export function deleteCustomer(id:number){
     return {type:CustomersActionTypes.DeleteCustomer,payload:id}
+}
+export function logoutCustomers(){
+    return {type:CustomersActionTypes.Logout}
 }
 // 5. Reducer - the logic for each Action
 function customerReducer(currentState=new AdminCustomersState(),action:CustomersAction){
@@ -48,6 +51,9 @@ function customerReducer(currentState=new AdminCustomersState(),action:Customers
             const index=newState.customers.findIndex(c=>c.id==id);
             if (index>=0)
                     newState.customers.splice(index,1);
+            break;
+        case CustomersActionTypes.Logout:
+            newState.customers=[];
             break;
         
     }

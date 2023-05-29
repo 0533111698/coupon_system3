@@ -1,35 +1,35 @@
 import { useEffect, useState } from "react";
 import Coupon from "../../../Models/Coupon";
-import "./CouponDetails.css";
+import "./CouponPurchase.css";
 import { useNavigate, useParams } from "react-router-dom";
 import companyService from "../../../Services/CompanyService";
 import notificationsService from "../../../Services/NotificationsService";
 import { authStore } from "../../../store/AouthState";
 import customerService from "../../../Services/CustomerService";
 
-function CouponDetails(): JSX.Element {
+import { Button, IconButton } from "@mui/material";
+import { ShoppingCartRounded } from "@mui/icons-material";
+function CouponPurchase(): JSX.Element {
     const[coupon,setCoupon]=useState<Coupon>();
+    const[clientType,setClientType]=useState<string>();
     const id:number=+useParams().couponId;
     const navigate=useNavigate();
     useEffect(()=>{
         companyService.getOneCoupon(id)
         .then(c=>setCoupon(c))
-        .catch(err=>notificationsService.error(err));    
+        .catch(err=>notificationsService.error(err));
+        setClientType(authStore.getState().clientType);
+        const unsubscribe=authStore.subscribe(()=>{
+            setClientType(authStore.getState().clientType);
+        })
+        return (()=>{
+            unsubscribe();
+        })
+    
     },[])
     
-    function deleteMe(){
-        companyService.deleteCoupon(id)
-        .then(()=>{
-            notificationsService.success("deleted succes");
-            //window.location.reload();
-            navigate("/coupons");
-        })
-        .catch(err=>notificationsService.error(err.message));
-    }
-    function updateMe(){
-        navigate("/coupons/edit/" +id);
-    }
-    function deletePurchase(){
+
+    function purchaseCoupon(){
         customerService.purchaseCoupon(coupon)
         .then(()=>{
             notificationsService.success("coupon purchase!")
@@ -38,17 +38,29 @@ function CouponDetails(): JSX.Element {
         .catch((err)=>notificationsService.error(err))
     }
     return (
-        <div className="CouponDetails">
+        <div className="CouponPurchase">
 			<h2>{coupon?.title}</h2>
             <p>{coupon?.description}</p>
             <p>{coupon?.category}</p>
             <p>{coupon?.price}</p>
-            <p>{coupon?.amount}</p>
+            <p>There are only: {coupon?.amount}</p>
             <p>{coupon?.endDate.toString()}</p>
-            <button onClick={deleteMe}>🗑</button>
-            <button onClick={updateMe}>✏</button>
+            {
+                clientType==="Customer"&&<>
+                <Button onClick={purchaseCoupon} variant="text" startIcon={<ShoppingCartRounded />}>
+                    Buy now
+                      </Button>
+                     
+                </>
+            }
         </div>
     );
 }
 
-export default CouponDetails;
+export default CouponPurchase;
+
+
+
+
+    
+

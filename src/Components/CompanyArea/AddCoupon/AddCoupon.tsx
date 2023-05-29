@@ -11,29 +11,44 @@ import { useEffect, useState } from "react";
 
 
 function AddCoupon(): JSX.Element {
+    
     const{register,handleSubmit,formState}=useForm<Coupon>();
     const navigate=useNavigate();
     const categories=Object.values(Category).filter((c)=>isNaN(Number(c)));
+    const[base64Image,setImage]=useState<String>('');
     const[getcompany,setCompany]=useState<Company>();
     const[getCoupon,setCoupon]=useState<Coupon>();
     useEffect(()=>{
         companyService.getCompanyDetails()
         .then(comp=>{
-            console.log("hi")
             setCompany(comp);
         })
+        .catch(err=>notificationsService.error);
     },[])
 
     function sendCoupon(coupon:Coupon){
-      //  coupon.image=(coupon.image as FileList)[0];;
-    
-        coupon.image = null;
+        coupon.image=base64Image;
         companyService.addCoupon(coupon)
         .then(newCoup=>{
             notificationsService.success("coupon added!")
            // navigate("/coupon/"+newCoup.id);
         }).catch((err:any)=>notificationsService.error(err));
     }
+   const toBase64=(file:File)=>new Promise<string|ArrayBuffer>((resolve, reject) => {
+    const reader =new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=reject;
+   })
+    const handleFileChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
+    toBase64(event.target.files[0]).then(base64=>setImage(base64 as string))
+   }
+   
+    
+ 
+
+
+    
     
 
  
@@ -41,6 +56,7 @@ function AddCoupon(): JSX.Element {
         <div className="AddCoupon" onSubmit={handleSubmit(sendCoupon)}>
             <form >
 			                <h2>Add New Coupon:</h2>
+                            
                             
                 {/*<input type="text" placeholder=" company " {...register("company")} /><br/> */}
                 {/* <label htmlFor="name">Name:</label> */}
@@ -66,9 +82,11 @@ function AddCoupon(): JSX.Element {
                 })} /><br/>
                 <span>{formState.errors?.price?.message}</span><br/>
               
-                <input type="file" {...register("image")} /><br/>
+                <input type="file"onChange={handleFileChange}/><br/>
+                
                 <input type="submit" value="AddCoupon" /><br/>
                 </form>
+                
         </div>
     );
 }

@@ -14,13 +14,22 @@ import UpdateCustomer from "../../AdminArea/Customers/UpdateCustomer/UpdateCusto
 import AddCoupon from "../../CompanyArea/AddCoupon/AddCoupon";
 import Coupons from "../../CompanyArea/Coupons/Coupons";
 import CouponDetails from "../../CompanyArea/CouponDetails/CouponDetails";
+import AllCoupons from "../../CustomerArea/AllCoupons/AllCoupons";
+
+import CouponPurchase from "../../CustomerArea/CouponPurchase/CouponPurchase";
+import CustomerCoupons from "../../CustomerArea/CustomerCoupons/CustomerCoupons";
+import CouponList from "../../CustomerArea/CouponList/CouponList";
+import Blog from "../../PagesArea/Blog/Blog";
+import CompanyDetailsUseComp from "../../CompanyArea/Company/CompanyDetailsUseComp";
 
 
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
             <Routes>
-                <Route path="/" element={<Login/>}></Route>
+                
+                <Route path="/" element={<AllCoupons/>}></Route>
+                
                 <Route path="/customers/:customerId" element={<CustomerDetails/>}/>
                 <Route path="/companies/edit/:compId" element={<UpdateCompany />} />
                 <Route path="/customers/edit/:custId" element={<UpdateCustomer />} />                
@@ -30,8 +39,15 @@ function Routing(): JSX.Element {
                 <Route path="/companies" element={<Companies/>}/>
                 <Route path="/coupons" element={<Coupons/>}/>
                 <Route path="/Company/add"element={<AddCompany/>}/>
+                <Route path="/companyDetails"element={<CompanyDetailsUseComp/>}/>
                 <Route path="/customer/add"element={<AddCustomer/>}/>
                 <Route path="/coupon/add"element={<AddCoupon/>}/>
+                <Route path="/customer/purchase/:couponId" element={<CouponPurchase/>}></Route>
+                <Route path="/customer/couponList" element={<CouponList/>}></Route>
+                <Route path="/customer/coupons" element={<CustomerCoupons/>}></Route>
+                <Route path="/blog" element={<Blog/>}></Route>
+
+                <Route path="/login" element={<Login/>}></Route>
                 <Route path="*" element={<PageNotFound/>}></Route>
             
                 </Routes>	

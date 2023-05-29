@@ -1,8 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./AouthMenu.css";
 import { useEffect, useState } from "react";
-import { authStore } from "../../../store/AouthSttate";
+
 import authService from "../../../Services/AuthService";
+import { authStore } from "../../../store/AouthState";
+import { error } from "console";
+import notificationsService from "../../../Services/NotificationsService";
+import { Logout } from "@mui/icons-material";
+import { Button } from "@mui/material";
 
 function AouthMenu(): JSX.Element {
     const navigate = useNavigate();
@@ -21,19 +26,32 @@ function AouthMenu(): JSX.Element {
     function logout(){
         authService.logout().then(
             ()=>{
+                notificationsService.success(" good bye" )
+                
                 navigate("/login");
+               
             }
-        ).catch();
+        ).catch(error=>notificationsService.error(error));
     }
+    function login(){
+        navigate("/login")
+    }
+   
     return (
         <div className="AouthMenu">
-			   !token && 
+			   {!token && 
                 <>
-                    <NavLink to={"/login"}>Login</NavLink>
-                </> ||
+                <button onClick={login }>Login</button>
+                   
+                </> }
+                {token&&
                 <>
-                    Hello {authStore.getState().name} <button onClick={logout}>Logout</button>
+                    <span>Hello {authStore.getState().name}!</span>
+                     <Button onClick={logout}variant="text" startIcon={<Logout />}>
+                                    Logout
+                     </Button>
                 </>
+}
         </div>
     );
 }

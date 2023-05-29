@@ -1,6 +1,6 @@
 import axios from "axios";
 import { companiessStore } from "../store/CompaniesState";
-import { addCoup, couponsStore, deleteCoupon, featchCoupons, updateCoupon } from "../store/CouponsState";
+import { addCoup, addToAllCoup, couponsStore, deleteCoupon, featchCoupons, updateAllCoupons, updateCoupon } from "../store/CouponsState";
 import Coupon from "../Models/Coupon";
 import Company from "../Models/Company";
 
@@ -23,14 +23,16 @@ class CompanyService {
         // formData.append("endDate", coupon.endDate.toString());
         // formData.append("amount", coupon.amount.toString());
         // formData.append("image", coupon.image);
-        const response=((await axios.post<Coupon>('http://localhost:8080/company/addCoupon',coupon)).data);
+        const response=(await axios.post<Coupon>('http://localhost:8080/company/addCoupon',coupon)).data;
         couponsStore.dispatch(addCoup(response));
+        couponsStore.dispatch(addToAllCoup(response));
         return response;
 
     } 
     public async updateCoupon(coupon:Coupon){
-        const response=((await axios.put<Coupon>('http://localhost:8080/company/updateCoupon',coupon)).data);
+        const response=(await axios.put<Coupon>('http://localhost:8080/company/updateCoupon',coupon)).data;
         couponsStore.dispatch(updateCoupon(response));
+        couponsStore.dispatch(updateAllCoupons(response));
         return response;
 
     } 
@@ -44,7 +46,7 @@ class CompanyService {
         return response;
     }
     public async getOneCoupon(couponId:number):Promise <Coupon>{
-        const coup=couponsStore.getState().coupons.find(c=>c.id==couponId);
+        const coup=couponsStore.getState().allCoupons.find(c=>c.id==couponId);
         if(coup==undefined){
                 throw Error("coupon not found!");
     }

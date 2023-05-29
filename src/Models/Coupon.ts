@@ -12,9 +12,9 @@ class Coupon {
     amount:number;
     price:number;
     imageName:string;
-    image: string;
+    image?: any ;
     constructor(id:number,company:Company,category:Category, title:string, description:string, startDate:Date, 
-        endDate:Date, amount:number, price:number,imageName:string, image: string){
+        endDate:Date, amount:number, price:number,imageName:string, image?: any ){
             this.id=id;
             this.company=company;
             this.category=category;

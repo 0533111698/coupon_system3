@@ -1,5 +1,6 @@
 import axios from "axios";
-import { authStore } from "../store/AouthSttate";
+import { authStore } from "../store/AouthState";
+
 
 
 export function tokenInterceptor(){
