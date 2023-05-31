@@ -20,7 +20,8 @@ import CouponPurchase from "../../CustomerArea/CouponPurchase/CouponPurchase";
 import CustomerCoupons from "../../CustomerArea/CustomerCoupons/CustomerCoupons";
 import CouponList from "../../CustomerArea/CouponList/CouponList";
 import Blog from "../../PagesArea/Blog/Blog";
-import CompanyDetailsUseComp from "../../CompanyArea/Company/CompanyDetailsUseComp";
+import CompanyDetailsUseComp from "../../CompanyArea/CompanyDetailsUseComp/CompanyDetailsUseComp";
+import UpdateCoupon from "../../CompanyArea/UpdateCoupon/UpdateCoupon";
 
 
 function Routing(): JSX.Element {
@@ -38,6 +39,7 @@ function Routing(): JSX.Element {
                 <Route path="/customers" element={<Customers/>}/>
                 <Route path="/companies" element={<Companies/>}/>
                 <Route path="/coupons" element={<Coupons/>}/>
+                <Route path="/company/edit/:coupId" element={<UpdateCoupon />} />
                 <Route path="/Company/add"element={<AddCompany/>}/>
                 <Route path="/companyDetails"element={<CompanyDetailsUseComp/>}/>
                 <Route path="/customer/add"element={<AddCustomer/>}/>

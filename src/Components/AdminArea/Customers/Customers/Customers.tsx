@@ -18,7 +18,9 @@ function Customers(): JSX.Element {
     },[]);
     return (
         <div className="Customers">
-			{getCustomers.map(c=><CustomerCard key={c.id} customer={c}/>)}
+			{getCustomers.length>0&&getCustomers.map(c=><CustomerCard key={c.id} customer={c}/>)}
+            {getCustomers.length==0&&
+            <h1>There are no customers🙄</h1>}
         </div>
     );
 }

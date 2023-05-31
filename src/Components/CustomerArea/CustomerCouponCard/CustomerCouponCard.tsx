@@ -14,13 +14,14 @@ function CustomerCouponCard(props:CouponProps): JSX.Element {
         customerService.deletePurchaseCoupon(props.coupon)
         .then(()=>{
             notificationsService.success("Coupon Deleted!");
-            navigate("/customer/coupons")
+            navigate("/")
 
         })
         .catch(err=>notificationsService.error(err));
     }
     return (
         <div className="CustomerCouponCard">
+            {}
 			<h1>{props.coupon.title}</h1>
             <h2>{props.coupon.price}</h2>
             <h2>{props.coupon.endDate.toString()}</h2>

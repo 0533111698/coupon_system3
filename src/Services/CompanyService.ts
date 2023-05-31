@@ -1,6 +1,6 @@
 import axios from "axios";
 import { companiessStore } from "../store/CompaniesState";
-import { addCoup, addToAllCoup, couponsStore, deleteCoupon, featchCoupons, updateAllCoupons, updateCoupon } from "../store/CouponsState";
+import { addCoup,couponsStore, deleteCoupon, featchCoupons, updateCoupon } from "../store/CouponsState";
 import Coupon from "../Models/Coupon";
 import Company from "../Models/Company";
 
@@ -15,24 +15,14 @@ class CompanyService {
         return couponsStore.getState().coupons;
     }
     public async addCoupon(coupon:Coupon){
-        // const formData = new FormData();
-        // formData.append("category", coupon.category.toString());
-        // formData.append("title", coupon.title);
-        // formData.append("description", coupon.description);
-        // formData.append("startDate", coupon.startDate.toString());
-        // formData.append("endDate", coupon.endDate.toString());
-        // formData.append("amount", coupon.amount.toString());
-        // formData.append("image", coupon.image);
-        const response=(await axios.post<Coupon>('http://localhost:8080/company/addCoupon',coupon)).data;
+        const response=((await axios.post<Coupon>('http://localhost:8080/company/addCoupon',coupon)).data);
         couponsStore.dispatch(addCoup(response));
-        couponsStore.dispatch(addToAllCoup(response));
         return response;
 
     } 
     public async updateCoupon(coupon:Coupon){
-        const response=(await axios.put<Coupon>('http://localhost:8080/company/updateCoupon',coupon)).data;
+        const response=((await axios.put<Coupon>('http://localhost:8080/company/updateCoupon',coupon)).data);
         couponsStore.dispatch(updateCoupon(response));
-        couponsStore.dispatch(updateAllCoupons(response));
         return response;
 
     } 

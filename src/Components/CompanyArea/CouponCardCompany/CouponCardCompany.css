@@ -1,9 +1,4 @@
-.UpdateCoupon {
-
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+.CouponCardCompany {
         width: 250px;
         height: 350px;
         display: inline-block;
@@ -15,6 +10,7 @@
         text-align: center;
     
         transition: all 0.5s;
-    
-    
-}
+    }.CouponCardCompany>img {
+        width: 150px;
+        border-radius: 20px;
+    }

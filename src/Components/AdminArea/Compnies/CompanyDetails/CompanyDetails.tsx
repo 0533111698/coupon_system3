@@ -4,6 +4,8 @@ import Company from "../../../../Models/Company";
 import { useNavigate, useParams } from "react-router-dom";
 import adminService from "../../../../Services/AdminService";
 import notificationsService from "../../../../Services/NotificationsService";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeIcon from '@mui/icons-material/Mode';
 
 function CompanyDetails(): JSX.Element {
     const [company,setCompany]=useState<Company>();
@@ -33,8 +35,8 @@ function CompanyDetails(): JSX.Element {
         <div className="CompanyDetails">
 			<h1>{company?.name}</h1>
             <h2>{company?.email}</h2>
-            <button onClick={deleteMe}>🗑</button>
-            <button onClick={updateMe}>✏</button>
+            <button onClick={updateMe}><ModeIcon fontSize="large"/></button>
+            <button onClick={deleteMe}><DeleteIcon fontSize="large"/></button>
             
         </div>
     );

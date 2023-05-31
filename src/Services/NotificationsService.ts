@@ -1,7 +1,16 @@
 import { wait } from '@testing-library/user-event/dist/utils';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { authStore, logout } from '../store/AouthState';
+import { companiessStore, logoutCompanies } from '../store/CompaniesState';
+import { couponsStore, logoutCoupons } from '../store/CouponsState';
+import { customersStore, logoutCustomers } from '../store/CustomersStore';
+import { useNavigate } from 'react-router-dom';
+
+
 class NotificationsService{
+  
+    
     public success(msg:string){
         toast.success(msg)
     }
@@ -12,7 +21,15 @@ class NotificationsService{
             toast.error(err.response.data);
             wait(3000)
                 if (err.response.status === 401){
-                    // localStorage.removeItem('token');
+                        
+                    //localStorage.removeItem('token');
+                    // authStore.dispatch(logout());
+                    // companiessStore.dispatch(logoutCompanies());
+                    // customersStore.dispatch(logoutCustomers())
+                    // couponsStore.dispatch(logoutCoupons())
+                    
+                    
+                    
                 
             }} else {                                          
             toast.error(err.message);

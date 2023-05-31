@@ -6,6 +6,8 @@ import companyService from "../../../Services/CompanyService";
 import notificationsService from "../../../Services/NotificationsService";
 import { authStore } from "../../../store/AouthState";
 import customerService from "../../../Services/CustomerService";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeIcon from '@mui/icons-material/Mode';
 
 function CouponDetails(): JSX.Element {
     const[coupon,setCoupon]=useState<Coupon>();
@@ -18,6 +20,7 @@ function CouponDetails(): JSX.Element {
     },[])
     
     function deleteMe(){
+        coupon.id=id;
         companyService.deleteCoupon(id)
         .then(()=>{
             notificationsService.success("deleted succes");
@@ -27,7 +30,8 @@ function CouponDetails(): JSX.Element {
         .catch(err=>notificationsService.error(err.message));
     }
     function updateMe(){
-        navigate("/coupons/edit/" +id);
+        coupon.id=id
+        navigate("/company/edit/" +id);
     }
     function deletePurchase(){
         customerService.purchaseCoupon(coupon)
@@ -39,14 +43,16 @@ function CouponDetails(): JSX.Element {
     }
     return (
         <div className="CouponDetails">
+            <img src={coupon?.image} alt="" />
 			<h2>{coupon?.title}</h2>
-            <p>{coupon?.description}</p>
-            <p>{coupon?.category}</p>
-            <p>{coupon?.price}</p>
-            <p>{coupon?.amount}</p>
-            <p>{coupon?.endDate.toString()}</p>
-            <button onClick={deleteMe}>🗑</button>
-            <button onClick={updateMe}>✏</button>
+            <p>{coupon?.description}</p> <br />
+            Category : <span>{coupon?.category}</span> <br />
+            Price : <span>{coupon?.price}</span> <br />
+            Amount : <span>{coupon?.amount}</span> <br />
+            Start date: <span>{coupon?.startDate.toString()}</span> <br />
+            End date: <span>{coupon?.endDate.toString()}</span> <br />
+            <button onClick={deleteMe}><DeleteIcon/></button>
+            <button onClick={updateMe}><ModeIcon/></button>
         </div>
     );
 }

@@ -2,10 +2,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Coupon from "../../../Models/Coupon";
 import "./CouponCard.css";
 import { useEffect, useState } from "react";
-import { couponsStore } from "../../../store/CouponsState";
 import { authStore } from "../../../store/AouthState";
-import { Button, IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 import { ShoppingCartRounded } from "@mui/icons-material";
+
 interface CouponProps{
     coupon:Coupon
 }
@@ -29,23 +29,25 @@ function CouponCard(props:CouponProps): JSX.Element {
     function toCouponPurchase(){
         navigat("/customer/purchase/"+props.coupon.id)
     }
+   
     return (
         <div className="CouponCard">
-			<NavLink to={"/coupons/"+props.coupon.id}>
+              <img src={props.coupon.image} alt="" />
                 <h2>{props.coupon.title}</h2>
-                
-            </NavLink>
             <p>{props.coupon.description}</p>
-            <img src={props.coupon.image} alt="" />
+            Category: <span>{props.coupon.category}</span><br />
+            Price: <span>{props.coupon.price}$</span> <br />
+          
            
             {clientType==="Customer"&&<>
             <Button onClick={toCouponPurchase} variant="text" startIcon={<ShoppingCartRounded />}>
             For purchase
+            
                       </Button>
-                      </>
+                      </>   }  
+                  
             
-            
-}
+
 
             
       

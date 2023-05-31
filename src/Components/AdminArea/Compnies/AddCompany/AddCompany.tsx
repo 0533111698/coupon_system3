@@ -2,13 +2,23 @@ import { useForm } from "react-hook-form";
 import Company from "../../../../Models/Company";
 import "./AddCompany.css";
 import { useNavigate } from "react-router-dom";
-import companyService from "../../../../Services/CompanyService";
 import adminService from "../../../../Services/AdminService";
 import notificationsService from "../../../../Services/NotificationsService";
+import { Save } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 
 function AddCompany(): JSX.Element {
     const {register, handleSubmit,formState}=useForm<Company>();
+    const[ompanies,setCompanies]=useState<Company[]>();
     const navigate=useNavigate();
+    useEffect(()=>{
+        adminService.getAllCompanies()//if you choose add company befor chosing:get all companies, the state.lenth will be more than 0... 
+        .then((comp)=>{
+            setCompanies(comp);
+        })
+        .catch(err=>notificationsService.error(err))
+
+    },[])
     function sendCompany(company:Company){
        adminService.addCompany(company)
        .then(newcomp=>{
@@ -35,7 +45,7 @@ function AddCompany(): JSX.Element {
                     required:{value:true,message:"Required field"}
                 })} /><br/>
                 <span>{formState.errors?.password?.message}</span><br />
-                <button name="add" type="submit">Add Company</button>
+                <button name="add" type="submit"><Save fontSize="large"/> Save</button>
 
             </form>
         </div>

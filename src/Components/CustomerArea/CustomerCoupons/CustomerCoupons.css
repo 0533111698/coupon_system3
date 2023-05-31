@@ -1,3 +1,6 @@
 .CustomerCoupons {
 	
 }
+.CustomerCoupons>h1{
+    text-align: center;
+}

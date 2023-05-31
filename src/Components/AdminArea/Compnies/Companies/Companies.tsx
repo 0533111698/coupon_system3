@@ -15,13 +15,18 @@ function Companies(): JSX.Element {
         .then(( Companies)=>{
             setCompanies(Companies)
         })
-        .catch(error=>notificationsService.error("You are not loged in"))
+        .catch(error=>notificationsService.error("You not loged in"))
     },[]);
     return (
         <div className="Companies">
-            <h1>You have {getCompanies.length} companies</h1>
-            <h1>it's wow!</h1>
-			{getCompanies.map(c=><CompanyCard key={c.id}company={c}/>)}
+           
+			{getCompanies.length>0 &&<>
+                <h1>You have {getCompanies.length} companies it's wow <br /> but --- today you will multiply  it!!!</h1>
+                {getCompanies.map(c=><CompanyCard key={c.id}company={c}/>)}
+                </>
+              }
+             {getCompanies.length==0&&
+             <h1>There are no companies 🙄</h1>}
             
         </div>
     );

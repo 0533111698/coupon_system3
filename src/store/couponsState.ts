@@ -10,7 +10,7 @@ export class AdminCouponsState{
 // 2. a list of Action Types
 export enum CouponsActionTypes{
     FeatchCoupons, AddCoupon, DeleteCoupon,UpdateCoupon,FeatchAllCoupons
-    ,AddToAllCoupons,UpdateAllCoupons,DeleteFromAllCoupons,DeletePurchseCoupon,Logout
+    ,AddToAllCoupons,DeleteFromAllCoupons,DeletePurchseCoupon,Logout
 }
 // 3. wrapper for Action and Value
 export interface CouponsAction{
@@ -27,14 +27,8 @@ export function featchAllCoupons(allCoupons:Coupon[]){
 export function addCoup(coupon:Coupon){
     return{type:CouponsActionTypes.AddCoupon,payload:coupon}
 }
-export function addToAllCoup(coupon:Coupon){
-    return{type:CouponsActionTypes.AddToAllCoupons,payload:coupon}
-}
 export function updateCoupon(coupon:Coupon){
     return{type:CouponsActionTypes.UpdateCoupon,payload:coupon}
-}
-export function updateAllCoupons(coupon:Coupon){
-    return{type:CouponsActionTypes.UpdateAllCoupons,payload:coupon}
 }
 export function deleteCoupon(couponId:number){
     return {type:CouponsActionTypes.DeleteCoupon,payload:couponId}
@@ -57,12 +51,16 @@ function couponReducer(currentState=new AdminCouponsState(),action:CouponsAction
             break;
         case CouponsActionTypes.AddCoupon:
             newState.coupons.push(action.payload);
+            newState.allCoupons.push(action.payload);
             break;
         case CouponsActionTypes.UpdateCoupon:
             const coupId=action.payload.id;
             const coupIndex=newState.coupons.findIndex(c=>c.id==coupId);
+            const allCoupIndex=newState.allCoupons.findIndex(c=>c.id==coupId);
             if(coupIndex>=0)
                     newState.coupons[coupIndex]=action.payload;
+            if(allCoupIndex>=0)
+                    newState.allCoupons[allCoupIndex]=action.payload
             break;
         case CouponsActionTypes.DeleteCoupon:
             const id=action.payload; // payload is number

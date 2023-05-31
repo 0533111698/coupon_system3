@@ -3,8 +3,7 @@ import Coupon from "../../../Models/Coupon";
 import "./Coupons.css";
 import companyService from "../../../Services/CompanyService";
 import notificationsService from "../../../Services/NotificationsService";
-import CouponCard from "../CouponCard/CouponCard";
-import { authStore } from "../../../store/AouthState";
+import CouponCardCompany from "../CouponCardCompany/CouponCardCompany";
 
 function Coupons(): JSX.Element {
     const[getCoupons,setCoupons]=useState<Coupon[]>([]);
@@ -17,7 +16,8 @@ function Coupons(): JSX.Element {
     },[])
     return (
         <div className="Coupons">
-			{getCoupons.map(c=><CouponCard key={c.id}coupon={c}/>)}
+			{ getCoupons.map(c=><CouponCardCompany key={c.id}coupon={c}/>)}
+            {getCoupons.length==0&&<h1>You have no coupons🙄</h1>}
         </div>
     );
 }

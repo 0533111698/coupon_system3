@@ -11,14 +11,7 @@ function CustomerCard(props:CustomerProps): JSX.Element {
     const navigate=useNavigate();
 
 
-       // adminService.del(props.company.id)
-     //   .then(()=>{
-      //      notificationsService.succes("deleted succes");
-      //      window.location.reload();
-     //       navigate("/companies");
-      //  })
-    //    .catch(err=>notificationsService.error(err.message));
-   // }
+  
     return (
         <div className="CustomerCard">
             <NavLink to={"/customers/"+props.customer.id}>

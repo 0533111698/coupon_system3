@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import ClientType from "../../../Models/ClientType";
 import { authStore } from "../../../store/AouthState";
 import HomeIcon from '@mui/icons-material/Home';
-
-
+import PeopleIcon from '@mui/icons-material/People';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import DvrIcon from '@mui/icons-material/Dvr';
 import { CardGiftcard, ShoppingCart,FreeBreakfast } from "@mui/icons-material";
 
 
@@ -35,18 +39,18 @@ function Menu(): JSX.Element {
         
             {
                 clientType==="Administrator"&&<>
-                <NavLink to="/customers">Customers</NavLink>   <span>        </span>
-            <NavLink to="/companies">Companies</NavLink><span>        </span>
-            <NavLink to="/company/add">addCompany</NavLink><span>        </span>
-            <NavLink to="/customer/add">addCustomer</NavLink><span>        </span>
+                <NavLink to="/customers"><PeopleIcon fontSize="large"/>All customers</NavLink>   <span>        </span>
+            <NavLink to="/companies"><GroupWorkIcon fontSize="large"/>All companies</NavLink><span>        </span>
+            <NavLink to="/company/add"><AddCircleIcon fontSize="large"/>addCompany</NavLink><span>        </span>
+            <NavLink to="/customer/add"><PersonAddAlt1Icon fontSize="large"/>addCustomer</NavLink><span>        </span>
             
                 </>
 
             }
             { clientType==="Company"&&<>
-            <NavLink to="/coupon/add">addCoupon</NavLink><span>        </span>
-            <NavLink to="/coupons">jgk</NavLink><span>  </span>   
-            <NavLink to="/companyDetails">Get your company details</NavLink>
+            <NavLink to="/coupon/add"><AddCardIcon fontSize="large"/>addCoupon</NavLink><span>        </span>
+            <NavLink to="/coupons"><CardGiftcard fontSize="large"/>MyCoupons</NavLink><span>  </span>   
+            <NavLink to="/companyDetails"><DvrIcon fontSize="large"/>My company details</NavLink>
             </>}
             {clientType==="Customer"&&<>
             <NavLink to="/customer/coupons"><ShoppingCart fontSize="large"/> My coupons</NavLink><span>        </span>

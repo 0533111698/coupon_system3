@@ -5,6 +5,7 @@ import Company from "../../../../Models/Company";
 import adminService from "../../../../Services/AdminService";
 import { useForm } from "react-hook-form";
 import notificationsService from "../../../../Services/NotificationsService";
+import { Save } from "@mui/icons-material";
 
 function UpdateCompany(): JSX.Element {
     const {register, handleSubmit, formState, setValue} = useForm<Company>();
@@ -47,7 +48,7 @@ function UpdateCompany(): JSX.Element {
                 required:{value:true,message:"Required field"}
             })} /><br/>
             <span>{formState.errors?.password?.message}</span><br />
-            <button name="add" type="submit">Update Company</button>
+            <button name="add" type="submit"><Save fontSize="large"/></button>
 
         </form>
     </div>

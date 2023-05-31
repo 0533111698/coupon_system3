@@ -28,7 +28,7 @@ function Login(): JSX.Element {
  
     return (
         <div className="Login">
-            <h1>Wellcome to the reddish and hot coupons 🔥🔥🔥</h1>
+            <h1>Ready your suitcases, it will be hot 🔥🔥🔥</h1>
             <div>
             <form onSubmit={handleSubmit(send)}>
                 <label htmlFor="email">Email:</label>
@@ -46,27 +46,19 @@ function Login(): JSX.Element {
                 })} />
                 <span>{formState.errors?.password?.message}</span>
                 <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">Role:</InputLabel>
-  <Select {...register("clientType", {
-                })}
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-   
-    label="Role"
-    
-  >
-    <MenuItem value="Administrator">Administrator</MenuItem>
-    <MenuItem  value="Company">Company</MenuItem>
-    <MenuItem value="Customer">Customer</MenuItem>
-  </Select>
-</FormControl>
+                <InputLabel id="demo-simple-select-label">Role:</InputLabel>
+                 <Select {...register("clientType", {
+                })}  
+                  labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label="Role"
+                        >
+                    <MenuItem value="Administrator">Administrator</MenuItem>
+                    <MenuItem  value="Company">Company</MenuItem>
+                    <MenuItem value="Customer">Customer</MenuItem>
+                 </Select>
+                </FormControl>
                 
-                {/* <select id="clientType" defaultValue={"Customer"} {...register("clientType", {
-                })}>
-                    <option value="Administrator">Administrator</option>
-                    <option value="Company">Company</option>
-                    <option value="Customer">Customer</option>
-                </select> */}
                 <br />
 
                 <span>{}</span>

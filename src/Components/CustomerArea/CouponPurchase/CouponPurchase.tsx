@@ -6,7 +6,6 @@ import companyService from "../../../Services/CompanyService";
 import notificationsService from "../../../Services/NotificationsService";
 import { authStore } from "../../../store/AouthState";
 import customerService from "../../../Services/CustomerService";
-
 import { Button, IconButton } from "@mui/material";
 import { ShoppingCartRounded } from "@mui/icons-material";
 function CouponPurchase(): JSX.Element {
@@ -39,6 +38,7 @@ function CouponPurchase(): JSX.Element {
     }
     return (
         <div className="CouponPurchase">
+            <img src={coupon?.image} alt="" />
 			<h2>{coupon?.title}</h2>
             <p>{coupon?.description}</p>
             <p>{coupon?.category}</p>

@@ -1,13 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./AouthMenu.css";
 import { useEffect, useState } from "react";
-
 import authService from "../../../Services/AuthService";
 import { authStore } from "../../../store/AouthState";
 import { error } from "console";
 import notificationsService from "../../../Services/NotificationsService";
 import { Logout } from "@mui/icons-material";
 import { Button } from "@mui/material";
+
 
 function AouthMenu(): JSX.Element {
     const navigate = useNavigate();
@@ -27,11 +27,15 @@ function AouthMenu(): JSX.Element {
         authService.logout().then(
             ()=>{
                 notificationsService.success(" good bye" )
-                
+                document.getElementById("name").textContent="";
                 navigate("/login");
                
             }
-        ).catch(error=>notificationsService.error(error));
+        ).catch(error=>{
+            notificationsService.error(error)
+    
+        }
+            );
     }
     function login(){
         navigate("/login")
@@ -46,8 +50,8 @@ function AouthMenu(): JSX.Element {
                 </> }
                 {token&&
                 <>
-                    <span>Hello {authStore.getState().name}!</span>
-                     <Button onClick={logout}variant="text" startIcon={<Logout />}>
+                    <span id="name">Hello {authStore.getState().name}!</span>
+                     <Button id="button" onClick={logout}variant="text" startIcon={<Logout />}>
                                     Logout
                      </Button>
                 </>

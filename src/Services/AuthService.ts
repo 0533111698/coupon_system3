@@ -18,10 +18,14 @@ class AuthService {
     public async logout(){
         const tokn=authStore.getState().token;
         const response= (await axios.post<string>("http://localhost:8080/auth/logout/"+tokn)).data;
-        authStore.dispatch(logout());
         companiessStore.dispatch(logoutCompanies());
         customersStore.dispatch(logoutCustomers())
         couponsStore.dispatch(logoutCoupons())
+        setTimeout(()=>{
+         authStore.dispatch(logout());
+
+        },1000)
+        
         return response;    
     }
 }

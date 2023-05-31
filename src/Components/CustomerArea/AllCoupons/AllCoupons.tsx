@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import Coupon from "../../../Models/Coupon";
 import "./AllCoupons.css";
 import customerService from "../../../Services/CustomerService";
-import { error } from "console";
 import notificationsService from "../../../Services/NotificationsService";
-import CouponCard from "../../CompanyArea/CouponCard/CouponCard";
+import CouponCard from "../CouponCard/CouponCard";
 
 function AllCoupons(): JSX.Element {
     const [allCoupons,setAllCoupons]=useState<Coupon[]>([]);
